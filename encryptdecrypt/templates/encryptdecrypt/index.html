@@ -1,0 +1,289 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './forms.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="index-links">
+                <a href="{% url 'encryptdecrypt:index' %}">
+                    <li>
+                        Home
+                    </li>
+                </a>
+                <a href="{% url 'encryptdecrypt:enc' %}">
+                    <li>
+                        Encryptor
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:dec' %}">
+                    <li>
+                        Decryptor
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:index' %}#motto">
+                    <li>
+                        Our Motto
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                    <li>
+                        About Us
+                    </li>
+                </a>
+
+                {% if type == 3 %}
+                <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                    <li>
+                        Login/Signup
+                    </li>
+                </a>
+                {% endif %}
+                {% if type == 2 %}
+                <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                    <li>
+                        Dashboard
+                    </li>
+                </a>
+                {% endif %}
+                </a>
+            </ul>
+            <div id="lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+        <div class="mob-nav" id="mob-nav">
+            <ul class="links">
+                <a href="{% url 'encryptdecrypt:index' %}">
+                    <li>
+                        Home
+                    </li>
+                </a>
+                <a href="{% url 'encryptdecrypt:enc' %}">
+                    <li>
+                        Encryptor
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:dec' %}">
+                    <li>
+                        Decryptor
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:index' %}#motto">
+                    <li>
+                        Our Motto
+                    </li>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                    <li>
+                        About Us
+                    </li>
+                </a>
+
+                {% if type == 3 %}
+                <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                    <li>
+                        Login/Signup
+                    </li>
+                </a>
+                {% endif %}
+                {% if type == 2 %}
+                <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                    <li>
+                        Dashboard
+                    </li>
+                </a>
+                {% endif %}
+            </ul>
+        </div>
+
+        <article class="index-title">
+            <h1 id="load-title">
+               < hnumjw3rj >
+            </h1>
+            <div class="controllers">
+                <a href="{% url 'encryptdecrypt:enc' %}">
+                    <button>
+                        Encrypt
+                    </button>
+                </a>
+
+                <a href="{% url 'encryptdecrypt:dec' %}">
+                    <button>
+                        Decrypt
+                    </button>
+                </a>
+            </div>
+        </article>
+    </header>
+
+    <section class="motto" id="motto">
+        <h1>
+            Our Motto
+        </h1>
+        <h2 class="quote">
+            "We need to think about encryption not as this sort of arcane, black art. It's a basic protection."
+        </h2>
+        <div class="motto-data">
+            In this digital world, it has became necessity to check in the user's privacy. This platform will help 
+            us to keep our data protected. This was the basic problem statement that we came up with, when we saw this news
+
+         
+        </div>
+        <ul class="news">
+            <li>
+                On September 24, 2022 SOCRadar detected a misconfigured public bucket where Microsoft stored 2.4 TB of data.
+            </li>
+            <li>
+                October 4, 2022, which resulted in the theft of about two million BNB (Binance Coin) tokens, exchangeable for over $570 million in fiat currency.
+            </li>
+            <li>
+                And many much more
+            </li>
+        </ul>
+        <div class="motto-data">
+            We opened our Eyes and tried to check for all possible solutions and then we stumbled upon Advanced Encryption System Algorithm (AES).
+            Advanced Encryption Standard (AES) is a specification for the encryption of electronic data established by the U.S National Institute of Standards and Technology (NIST) in 2001. AES is widely used today as it is a much stronger than DES and triple DES despite being harder to implement. 
+        </div>
+        <div class="motto-data">
+            That means it takes 128 bits as input and outputs 128 bits of encrypted cipher text as output. AES relies on substitution-permutation network principle which means it is performed using a series of linked operations which involves replacing and shuffling of the input data.
+        </div>
+    </section>
+
+    <section class="motto" id="abt-us">
+        <h1>
+            About Us
+        </h1>
+       
+       
+        <div class="arena-sub">
+            <div class="container">
+                <div class="card aditya">
+                    
+        
+                    <div class="contentBx">
+                        
+                        <h2>Suryawanshi Aditya</h2>
+        
+                        <div class="size">
+                            <h3>Enroll : 2010510397</h3>
+                        </div>
+
+                        <div class="size">
+                            <h3>Roll No : 22IF347</h3>
+                        </div>
+                    </div>
+        
+                </div>
+                </div>
+
+                <div class="container">
+                    <div class="card atharv">
+                        
+            
+                        <div class="contentBx">
+                        
+                            <h2>Gade Atharv</h2>
+            
+                            <div class="size">
+                                <h3>Enroll : 2010510357</h3>
+                            </div>
+    
+                            <div class="size">
+                                <h3>Roll No : 22IF311</h3>
+                            </div>
+                        </div>
+            
+            
+                    </div>
+                </div>
+
+
+                    <div class="container">
+                        <div class="card manoj">
+                            
+                
+                            <div class="contentBx">
+                        
+                                <h2>Kale Manoj</h2>
+                
+                                <div class="size">
+                                    <h3>Enroll : 2010510530</h3>
+                                </div>
+        
+                                <div class="size">
+                                    <h3>Roll No : 22IF362</h3>
+                                </div>
+                            </div>
+                
+                        </div>
+                </div>
+
+
+                        <div class="container">
+                            <div class="card samhihan">
+                                
+                    
+                                <div class="contentBx">
+                        
+                                    <h2>Bodhe Samhihan</h2>
+                    
+                                    <div class="size">
+                                        <h3>Enroll : 2010510526</h3>
+                                    </div>
+            
+                                    <div class="size">
+                                        <h3>Roll No : 22IF347</h3>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                </div>
+
+
+                            <div class="container">
+                                <div class="card kishor">
+                                    
+                        
+                                  <div class="contentBx">
+                        
+                                        <h2>Jadhav Kishor</h2>
+                        
+                                        <div class="size">
+                                            <h3>Enroll : 2010510364</h3>
+                                        </div>
+                
+                                        <div class="size">
+                                            <h3>Roll No : 22IF369</h3>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+            </div>
+
+    </section>
+
+    <footer>
+        &copy; IT Dept. Capstone Project
+    </footer>
+
+    <script src="{% static './navbar.js' %}"></script>
+    <script src="{% static './index.js' %}"></script>
+</body>
+</html>

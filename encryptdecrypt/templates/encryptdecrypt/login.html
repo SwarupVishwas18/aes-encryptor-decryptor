@@ -1,0 +1,158 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './forms.css' %}">
+    <style>
+            .motto{
+            text-align: justify;
+            align-items: flex-start;
+    justify-content: start;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            gap: .5rem;
+            margin-top: 3rem;
+            padding: 7%;
+        }
+
+        .help-text{
+            margin-bottom: 2rem;
+        }
+
+        form h1{
+            text-align: justify;
+            /* text-decoration: underline; */
+        }
+
+        form label{
+            text-align: justify;
+            font-weight: bolder;
+            font-size: 1.2rem;
+        }
+
+        .signup-link a{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="index-links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+        </ul>
+        <div id="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div class="mob-nav" id="mob-nav">
+        <ul class="links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+        </ul>
+    </div>
+
+      
+
+        
+        <form action="" method="post">
+            <h1>
+                Login
+            </h1>
+            {% csrf_token %} {{form}}
+            <div class="controllers">
+                <button type="submit" value="Submit">Submit</button>
+            </div>
+            <div class="signup-link">
+                Don't have account - <a href="{% url 'encryptdecrypt:register' %}">
+                    Click Here
+                </a>
+            </div>
+        </form>
+       
+    <footer>
+        &copy; IT Dept. Capstone Project
+    </footer>
+
+    <script src="{% static './navbar.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root{
+    --nav-bg: #161b21;
+    --bg-col: #0d1017;
+    --link-col: #d3ddda;
+    --cols: #ABB2BF;
+}
+
+.form{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 4rem;
+    gap: 2rem;
+    text-align: center;
+}
+
+textarea, #id_username, #id_password1, #id_password2, #id_username, #id_password{
+    display: block;
+    background-color: var(--nav-bg);
+    color: var(--link-col);
+    font-size: 1rem;
+    padding: .4rem .8rem;
+    border: 1px solid var(--cols);
+    border-radius: 8px;
+}
+
+#id_username, #id_password1, #id_password2, #id_username, #id_password{
+    margin-bottom: 1rem;
+}
+
+input[type="submit"]{
+    padding: .4rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg-col);
+    border-radius: 8px;
+    border: none;
+    opacity: .7;
+    transition: all ease-in-out 500ms;
+    cursor: pointer;
+}
+
+.helptext{
+    text-align: justify;
+    display: block;
+}
+
+input[type="submit"]:hover{
+    opacity: 1;
+}
+
+
+textarea:focus, #id_username:focus, #id_password1:focus , #id_password2:focus, #id_username:focus, #id_password:focus{
+    outline: none;
+}
+
+.op-cont{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './forms.css' %}">
+    <style>
+        textarea {
+  max-width: 100%;
+}
+
+#image-op{
+    padding: 1rem;
+    background-color: antiquewhite;
+    color: black;
+    font-family: cursive;
+    border-radius: 8px;
+    border: 1px solid crimson;
+    max-width: 400px;
+    word-wrap: break-word;
+    
+}
+
+
+form{
+    animation-name: tada;
+    animation-duration: 3s;
+}
+
+@keyframes tada {
+    from{
+        transform: scale(1.2);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+.imagify{
+    display: none;
+}
+
+#op{
+    word-wrap: break-word;
+    padding: 5%;
+    max-width: 50%;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="index-links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+        <div id="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div class="mob-nav" id="mob-nav">
+        <ul class="links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+    </div>
+      
+
+    <section class="motto">
+        
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            <h1>
+                Encrypt
+            </h1>
+            <textarea name="encrypt" cols="30" rows="7" id="encrypt" placeholder="Enter Your Text"></textarea>
+            <div class="controllers">
+                <button type="reset" value="Reset">Reset</button>
+                <button type="submit" value="Submit">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    {% if notes_data %}
+    <section class="motto op-cont" id="abt-us">
+        <h1>
+            Your Encoded Data
+        </h1>
+       
+        <h2 id="op">
+            {{notes_data}}
+        </h2>
+        <div class="controllers">
+                <button id="share">
+                    Share
+                </button>
+                <button id="copy">
+                    Copy
+                </button>
+                {% if type == 2 %}
+                <button id="img-btn">
+                    Imagify
+                </button>
+                {% endif %}
+        </div>
+
+        <div class="imagify" id="imagify">
+            <div id="image-op">
+
+            </div>
+            <div class="controllers">
+                <button id="dwnld">
+                    Download
+                </button>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    <script src="{% static './navbar.js' %}"></script>
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+        </script>
+          
+          <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"  crossorigin="anonymous"></script>
+
+    <script>
+        var op = document.querySelector('#op');
+
+document.querySelector('#share').addEventListener('click', function(){
+    navigator.share(op.textContent.trim());
+});
+
+document.querySelector('#copy').addEventListener('click', function(){
+    navigator.clipboard.writeText(op.textContent.trim());
+    alert("Copied Successfully")
+});
+
+document.querySelector('#img-btn').addEventListener('click', function(){
+    var ch = document.querySelector('#image-op');
+    console.log(op.textContent.trim());
+    ch.textContent = op.textContent.trim();
+    document.querySelector('#imagify').style.display = 'block';
+})
+
+document.querySelector('#dwnld').addEventListener('click', function(){
+    html2canvas(document.querySelector("#image-op")).then(canvas => {
+        if(document.querySelector('#canvas')){
+            const element = document.getElementById("canvas");
+element.remove();
+        }
+        document.querySelector('#image-op').innerHTML = "";
+        document.getElementById('image-op').appendChild(canvas);
+        var canvas = document.querySelector('canvas');
+        canvas.setAttribute('id', 'canvas');
+        document.querySelector('#imagify').style.display = "block";
+    }).then(
+        link => {
+            var link = document.createElement('a');
+            var name = prompt("Enter the name of File");
+            link.download = name+'.png';
+            link.href = document.getElementById('canvas').toDataURL()
+            link.click();
+    })
+})
+
+
+    </script>
+
+</body>
+</html>

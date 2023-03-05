@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './forms.css' %}">
+    <style>
+        textarea {
+  max-width: 100%;
+}
+
+
+form{
+    animation-name: tada;
+    animation-duration: 3s;
+}
+
+@keyframes tada {
+    from{
+        transform: translateX(-60rem);
+    }
+    to{
+        transform: translateX(0rem);
+    }
+}
+    </style>
+</head>
+<body>
+
+    {% if msgs %}
+        <script>
+            alert('{{msgs}}')
+        </script>
+    {% endif %}
+
+    <nav>
+        <ul class="index-links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+        <div id="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div class="mob-nav" id="mob-nav">
+        <ul class="links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+    </div>
+      
+      
+
+    <section class="motto">
+        
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            <h1>
+                Decrypt
+            </h1>
+            <textarea name="decrypt" id="encrypt" cols="30" rows="7" placeholder="Enter Your Text"></textarea>
+            <div class="controllers">
+                <button type="reset" value="Reset">Reset</button>
+                <button type="submit" value="Submit">Submit</button>
+            </div>
+        </form>
+    </section>
+    {% if notes_data %}
+    <section class="motto op-cont" id="abt-us">
+        <h1>
+            Your Decoded Data
+        </h1>
+       
+        <h2 id="op">
+            {{notes_data}}
+        </h2>
+        <div class="controllers">
+            <button id="share">
+                Share
+            </button>
+            <button id="copy">
+                Copy
+            </button>
+           
+        </div>
+    </section>
+    {% endif %}
+
+
+    <script src="{% static './navbar.js' %}"></script>
+    <!-- <script src="{% static './share.js' %}"></script> -->
+    <script>
+        var op = document.querySelector('#op');
+
+document.querySelector('#share').addEventListener('click', function(){
+    navigator.share(op.textContent.trim());
+});
+
+document.querySelector('#copy').addEventListener('click', function(){
+    navigator.clipboard.writeText(op.textContent.trim());
+    alert("Copied The Message")
+});
+    </script>
+</body>
+</html>

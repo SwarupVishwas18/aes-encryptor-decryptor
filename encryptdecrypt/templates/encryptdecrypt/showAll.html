@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './forms.css' %}">
+    <style>
+        .controllers{
+            text-align: center;
+        }
+
+.arena{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    /* width: 100vw; */
+    /* overflow: hidden; */
+    word-wrap: break-word;
+}
+
+.arena .note{
+    padding: 2rem 1.4rem;
+    background-color: var(--nav-bg);
+    max-width: 450px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    /* gap: 1rem; */
+    /* min-height: 300px; */
+}
+
+@media screen and (max-width:1050px) {
+    .arena{
+        grid-template-columns: 1fr;
+    }
+    .arena .note{
+        max-width: 350px;
+    }
+}
+
+.controllers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.username{
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <ul class="index-links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+        <div id="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div class="mob-nav" id="mob-nav">
+        <ul class="links">
+            <a href="{% url 'encryptdecrypt:index' %}">
+                <li>
+                    Home
+                </li>
+            </a>
+            <a href="{% url 'encryptdecrypt:enc' %}">
+                <li>
+                    Encryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:dec' %}">
+                <li>
+                    Decryptor
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#motto">
+                <li>
+                    Our Motto
+                </li>
+            </a>
+
+            <a href="{% url 'encryptdecrypt:index' %}#abt-us">
+                <li>
+                    About Us
+                </li>
+            </a>
+
+            {% if type == 3 %}
+            <a href="{% url 'encryptdecrypt:login' %}" class="login-link">
+                <li>
+                    Login/Signup
+                </li>
+            </a>
+            {% endif %}
+            {% if type == 2 %}
+            <a href="{% url 'encryptdecrypt:home' %}" class="login-link">
+                <li>
+                    Dashboard
+                </li>
+            </a>
+            {% endif %}
+        </ul>
+    </div>
+      
+
+    <section class="motto">
+        <div class="arena">
+            {% for data in notes_data %}
+            <div class="note">
+                {{data.data}}
+            </div>
+            {% endfor %}
+           
+        </div>
+    <div class="controllers">
+        <div class="username">
+            {{username}} -
+        </div>
+        <a href="{% url 'encryptdecrypt:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+        <a href="{% url 'encryptdecrypt:clear' %}">
+            <button>
+                Clear Data
+            </button>
+        </a>
+    </div>
+    <footer>
+        &copy; IT Dept. Capstone Project
+    </footer>
+
+    <script src="{% static './navbar.js' %}"></script>
+</body>
+</html>
